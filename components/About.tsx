@@ -25,13 +25,12 @@ export default function About() {
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="relative aspect-[4/5] w-full max-w-sm mx-auto md:mx-0 overflow-hidden"
           >
-            {/* TODO: Ole, ersetze dieses Bild durch dein eigenes Porträtfoto (public/images/portrait.jpg) */}
             <Image
-              src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&q=80"
+              src="/images/portrait.jpg"
               alt="Ole Nieuwenhuizen, Inhaber NIU Media"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover grayscale"
+              className="object-cover"
             />
             {/* Vignette overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" aria-hidden="true" />

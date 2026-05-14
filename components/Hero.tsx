@@ -10,22 +10,7 @@ export default function Hero() {
       aria-label="Hero"
       className="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden"
     >
-      {/* Background video – swap src once public/videos/hero.mp4 is available */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover"
-        src="/videos/hero.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        preload="metadata"
-        poster="/images/hero-poster.jpg"
-        aria-hidden="true"
-        style={{ display: "none" }} // hidden until file exists; fallback image shows
-      />
-
-      {/* Fallback image (shown until video is placed) */}
-      {/* TODO: Ole, ersetze dieses Bild durch das tatsächliche Hero-Video (public/videos/hero.mp4) */}
+      {/* Fallback image – shown when video hasn't loaded yet */}
       <div className="absolute inset-0 animate-ken-burns">
         <Image
           src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80"
@@ -37,6 +22,18 @@ export default function Hero() {
           fetchPriority="high"
         />
       </div>
+
+      {/* Background video – place your file at public/videos/hero.mp4 */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        src="/videos/hero.mp4"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+      />
 
       {/* Gradient overlays */}
       <div

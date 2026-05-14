@@ -94,7 +94,7 @@ export default function Services() {
               key={service.title}
               variants={fadeUp}
               transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="group bg-background p-8 border border-white/5 hover:border-white/10 transition-colors duration-300"
+              className="group bg-background p-8 border border-border hover:border-accent/30 transition-colors duration-300"
             >
               <service.icon
                 size={22}

@@ -61,7 +61,15 @@ export default function RootLayout({
     <html
       lang="de"
       className={`${inter.variable} ${fraunces.variable}`}
+      suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.classList.add('light');}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="bg-background text-foreground antialiased">
         {children}
       </body>
