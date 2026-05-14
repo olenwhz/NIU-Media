@@ -44,7 +44,24 @@ export default function Nav() {
   const scrolledClass =
     theme === "dark"
       ? "backdrop-blur-md bg-black/60 border-b border-white/5"
-      : "backdrop-blur-md bg-white/90 border-b border-border shadow-sm";
+      : "backdrop-blur-md bg-white/95 border-b border-border shadow-sm";
+
+  // When transparent (over hero image), always use white text regardless of theme
+  const logoClass = !scrolled
+    ? "text-white hover:text-accent"
+    : "text-foreground hover:text-accent";
+
+  const linkClass = !scrolled
+    ? "text-white/75 hover:text-white"
+    : "text-muted hover:text-foreground";
+
+  const iconClass = !scrolled
+    ? "text-white/75 hover:text-white"
+    : "text-muted hover:text-foreground";
+
+  const mobileIconClass = !scrolled
+    ? "text-white hover:text-accent"
+    : "text-foreground hover:text-accent";
 
   return (
     <>
@@ -57,7 +74,7 @@ export default function Nav() {
           {/* Logo */}
           <a
             href="#"
-            className="font-serif text-sm font-semibold tracking-widest uppercase text-foreground hover:text-accent transition-colors duration-300"
+            className={`font-serif text-sm font-semibold tracking-widest uppercase transition-colors duration-300 ${logoClass}`}
             aria-label="NIU Media – Zurück nach oben"
           >
             NIU MEDIA
@@ -69,7 +86,7 @@ export default function Nav() {
               <a
                 key={link.href}
                 href={link.href}
-                className="text-sm text-muted hover:text-foreground transition-colors duration-300 tracking-wide"
+                className={`text-sm transition-colors duration-300 tracking-wide ${linkClass}`}
               >
                 {link.label}
               </a>
@@ -79,7 +96,7 @@ export default function Nav() {
             <button
               onClick={toggleTheme}
               aria-label={theme === "dark" ? "Light Mode aktivieren" : "Dark Mode aktivieren"}
-              className="text-muted hover:text-foreground transition-colors duration-300 p-1"
+              className={`transition-colors duration-300 p-1 ${iconClass}`}
             >
               {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
             </button>
@@ -90,12 +107,12 @@ export default function Nav() {
             <button
               onClick={toggleTheme}
               aria-label={theme === "dark" ? "Light Mode aktivieren" : "Dark Mode aktivieren"}
-              className="text-foreground hover:text-accent transition-colors duration-300 p-1"
+              className={`transition-colors duration-300 p-1 ${mobileIconClass}`}
             >
               {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             <button
-              className="text-foreground hover:text-accent transition-colors duration-300 p-1"
+              className={`transition-colors duration-300 p-1 ${mobileIconClass}`}
               onClick={() => setMenuOpen(true)}
               aria-label="Menü öffnen"
             >
