@@ -1,20 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0A0A0A;
-  --color-background-alt: #111111;
-  --color-foreground: #F5F1EA;
-  --color-muted: #A8A29E;
-  --color-accent: #C9A876;
-  --color-accent-hover: #B8956A;
-  --color-border: #1F1F1F;
-
-  --font-sans: var(--font-inter);
-  --font-serif: var(--font-fraunces);
-}
-
-/* Light mode overrides */
-html.light {
+  /* Light mode is the default */
   --color-background: #FFFFFF;
   --color-background-alt: #F5F5F5;
   --color-foreground: #0A0A0A;
@@ -22,6 +9,20 @@ html.light {
   --color-accent: #C9A876;
   --color-accent-hover: #B8956A;
   --color-border: #E5E5E5;
+
+  --font-sans: var(--font-inter);
+  --font-serif: var(--font-fraunces);
+}
+
+/* Dark mode override */
+html.dark {
+  --color-background: #0A0A0A;
+  --color-background-alt: #111111;
+  --color-foreground: #F5F1EA;
+  --color-muted: #A8A29E;
+  --color-accent: #C9A876;
+  --color-accent-hover: #B8956A;
+  --color-border: #1F1F1F;
 }
 
 :root {
