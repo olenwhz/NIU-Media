@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { X, Menu } from "lucide-react";
+import { X, Menu, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
@@ -14,6 +14,7 @@ const links = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -21,15 +22,34 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("theme") as "dark" | "light" | null;
+      if (saved) setTheme(saved);
+    } catch {}
+  }, []);
+
+  const toggleTheme = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    try {
+      localStorage.setItem("theme", next);
+    } catch {}
+    document.documentElement.classList.toggle("light", next === "light");
+  };
+
   const closeMenu = () => setMenuOpen(false);
+
+  const scrolledClass =
+    theme === "light"
+      ? "backdrop-blur-md bg-white/90 border-b border-border shadow-sm"
+      : "backdrop-blur-md bg-black/60 border-b border-white/5";
 
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
-            ? "backdrop-blur-md bg-black/60 border-b border-white/5"
-            : "bg-transparent"
+          scrolled ? scrolledClass : "bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
@@ -53,16 +73,34 @@ export default function Nav() {
                 {link.label}
               </a>
             ))}
+
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              aria-label={theme === "dark" ? "Light Mode aktivieren" : "Dark Mode aktivieren"}
+              className="text-muted hover:text-foreground transition-colors duration-300 p-1"
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
           </nav>
 
-          {/* Hamburger */}
-          <button
-            className="md:hidden text-foreground hover:text-accent transition-colors duration-300 p-1"
-            onClick={() => setMenuOpen(true)}
-            aria-label="Menü öffnen"
-          >
-            <Menu size={22} />
-          </button>
+          {/* Mobile: theme toggle + hamburger */}
+          <div className="md:hidden flex items-center gap-3">
+            <button
+              onClick={toggleTheme}
+              aria-label={theme === "dark" ? "Light Mode aktivieren" : "Dark Mode aktivieren"}
+              className="text-foreground hover:text-accent transition-colors duration-300 p-1"
+            >
+              {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+            </button>
+            <button
+              className="text-foreground hover:text-accent transition-colors duration-300 p-1"
+              onClick={() => setMenuOpen(true)}
+              aria-label="Menü öffnen"
+            >
+              <Menu size={22} />
+            </button>
+          </div>
         </div>
       </header>
 
