@@ -66,7 +66,7 @@ export default function RootLayout({
       <head>
         <script
           dangerouslySetInnerHTML={{
-            __html: `try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}`,
+            __html: `try{var t=localStorage.getItem('theme');if(t==='dark')document.documentElement.classList.add('dark');}catch(e){}if(history.scrollRestoration)history.scrollRestoration='manual';window.addEventListener('load',function(){window.scrollTo(0,0);});`,
           }}
         />
       </head>
