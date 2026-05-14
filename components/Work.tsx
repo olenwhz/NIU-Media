@@ -77,7 +77,7 @@ export default function Work() {
           <motion.p
             variants={fadeUp}
             transition={{ duration: 0.6 }}
-            className="text-accent text-xs font-medium tracking-widest uppercase mb-4"
+            className="text-accent text-xs font-semibold tracking-widest uppercase mb-4"
           >
             Vergangene Projekte
           </motion.p>
@@ -92,7 +92,7 @@ export default function Work() {
           <motion.p
             variants={fadeUp}
             transition={{ duration: 0.6 }}
-            className="text-muted text-sm leading-relaxed"
+            className="text-foreground/60 text-sm leading-relaxed font-medium"
           >
             Schwerpunkt Immobilien — vereinzelt auch Fahrzeuge und lokale Unternehmen.
           </motion.p>
@@ -151,7 +151,7 @@ export default function Work() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="text-center text-muted text-sm mt-10"
+          className="text-center text-foreground/50 text-sm font-medium mt-10"
         >
           Weitere Referenzen auf Anfrage.
         </motion.p>
