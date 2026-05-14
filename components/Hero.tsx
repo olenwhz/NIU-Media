@@ -3,15 +3,18 @@
 import Image from "next/image";
 import { ChevronDown } from "lucide-react";
 import { motion } from "framer-motion";
+import { useState } from "react";
 
 export default function Hero() {
+  const [videoReady, setVideoReady] = useState(false);
+
   return (
     <section
       aria-label="Hero"
       className="relative w-full h-screen min-h-[600px] flex items-center justify-center overflow-hidden"
     >
-      {/* Fallback image */}
-      <div className="absolute inset-0 animate-ken-burns">
+      {/* Fallback image – hidden once video is ready */}
+      <div className={`absolute inset-0 animate-ken-burns transition-opacity duration-700 ${videoReady ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
         <Image
           src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1920&q=80"
           alt="Drohnenaufnahme Ostseeküste"
@@ -33,6 +36,7 @@ export default function Hero() {
         playsInline
         preload="metadata"
         aria-hidden="true"
+        onCanPlay={() => setVideoReady(true)}
       />
 
       {/* Gradient overlays – always dark, hero text must always be white */}
