@@ -1,46 +1,46 @@
 "use client";
 
-import { Home, Plane, Smartphone, Car, Film, Sparkles } from "lucide-react";
+import { Camera, Video, Plane, Car, Smartphone, Film } from "lucide-react";
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 
-interface Service {
+interface MainService {
   icon: LucideIcon;
   title: string;
   description: string;
+  detail: string;
 }
 
-const services: Service[] = [
+interface ExtraService {
+  icon: LucideIcon;
+  title: string;
+}
+
+const mainServices: MainService[] = [
   {
-    icon: Home,
-    title: "Immobilienfoto & -video",
-    description: "Objekte, die verkaufen, bevor der Termin steht.",
+    icon: Camera,
+    title: "Immobilienfotografie",
+    description: "Innen- und Außenaufnahmen, die Käufer überzeugen – bevor der erste Besichtigungstermin stattfindet.",
+    detail: "Architektur · Interiors · Exposé-Fotos",
+  },
+  {
+    icon: Video,
+    title: "Immobilienvideo",
+    description: "Atmosphärische Walk-throughs und Exposé-Filme, die das Gefühl eines Objekts transportieren.",
+    detail: "Walk-through · Kurzfilm · Social-Cut",
   },
   {
     icon: Plane,
     title: "Drohnenaufnahmen",
-    description: "Perspektiven, die am Boden niemand sieht.",
+    description: "Lage, Grundstück und Umgebung aus der Luft – für Objekte, bei denen die Perspektive den Unterschied macht.",
+    detail: "Luftaufnahmen · Lage · Umgebung",
   },
-  {
-    icon: Smartphone,
-    title: "Social Media Content",
-    description: "Reels, Stories und Posts mit Wiedererkennungswert.",
-  },
-  {
-    icon: Car,
-    title: "Fahrzeug-Content",
-    description: "Autos, Boote und Maschinen cinematic in Szene gesetzt.",
-  },
-  {
-    icon: Film,
-    title: "Reels & Kurzvideos",
-    description: "Schnell, modern, atmosphärisch.",
-  },
-  {
-    icon: Sparkles,
-    title: "Imagefilme",
-    description: "Marken-Geschichten in 60 bis 120 Sekunden.",
-  },
+];
+
+const extraServices: ExtraService[] = [
+  { icon: Car, title: "Fahrzeug-Content" },
+  { icon: Smartphone, title: "Social Media" },
+  { icon: Film, title: "Imagefilme" },
 ];
 
 const fadeUp = {
@@ -62,7 +62,7 @@ export default function Services() {
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
-          className="mb-16 md:mb-20"
+          className="mb-16 md:mb-20 max-w-2xl"
         >
           <motion.p
             variants={fadeUp}
@@ -75,40 +75,79 @@ export default function Services() {
             id="leistungen-heading"
             variants={fadeUp}
             transition={{ duration: 0.6 }}
-            className="font-serif font-semibold text-foreground text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight"
+            className="font-serif font-semibold text-foreground text-3xl md:text-4xl lg:text-5xl tracking-tight leading-tight mb-5"
           >
-            Was ich für dich produziere.
+            Spezialist für Immobilien.
           </motion.h2>
+          <motion.p
+            variants={fadeUp}
+            transition={{ duration: 0.6 }}
+            className="text-muted leading-relaxed"
+          >
+            Foto, Video und Drohne – alles aus einer Hand, damit dein Objekt online und offline überzeugt.
+          </motion.p>
         </motion.div>
 
-        {/* Grid */}
+        {/* Main services – Immobilien */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          variants={{ visible: { transition: { staggerChildren: 0.1 } } }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-border"
+          variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border mb-16"
         >
-          {services.map((service) => (
+          {mainServices.map((service) => (
             <motion.div
               key={service.title}
               variants={fadeUp}
               transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="group bg-background p-8 border border-border hover:border-accent/30 transition-colors duration-300"
+              className="group bg-background p-8 md:p-10 border border-border hover:border-accent/30 transition-colors duration-300"
             >
               <service.icon
-                size={22}
-                className="text-accent mb-5"
+                size={24}
+                className="text-accent mb-6"
                 aria-hidden="true"
               />
-              <h3 className="font-serif font-semibold text-foreground text-lg mb-3 leading-snug">
+              <h3 className="font-serif font-semibold text-foreground text-xl mb-4 leading-snug">
                 {service.title}
               </h3>
-              <p className="text-muted text-sm leading-relaxed">
+              <p className="text-muted text-sm leading-relaxed mb-5">
                 {service.description}
+              </p>
+              <p className="text-accent/70 text-xs tracking-wider uppercase">
+                {service.detail}
               </p>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Secondary services */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-40px" }}
+          variants={{ visible: { transition: { staggerChildren: 0.08 } } }}
+        >
+          <motion.p
+            variants={fadeUp}
+            transition={{ duration: 0.5 }}
+            className="text-muted text-xs tracking-widest uppercase mb-6"
+          >
+            Weitere Leistungen auf Anfrage
+          </motion.p>
+          <div className="flex flex-wrap gap-3">
+            {extraServices.map((s) => (
+              <motion.div
+                key={s.title}
+                variants={fadeUp}
+                transition={{ duration: 0.5 }}
+                className="flex items-center gap-2.5 px-5 py-3 border border-border text-muted text-sm hover:border-accent/30 hover:text-foreground transition-colors duration-300"
+              >
+                <s.icon size={15} className="text-accent/60" aria-hidden="true" />
+                {s.title}
+              </motion.div>
+            ))}
+          </div>
         </motion.div>
       </div>
     </section>
