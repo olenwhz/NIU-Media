@@ -26,7 +26,7 @@ export default function About() {
             className="relative aspect-[4/5] w-full max-w-sm mx-auto md:mx-0 overflow-hidden"
           >
             <Image
-              src="/images/portrait.jpg"
+              src="/images/IMG_0009.jpeg"
               alt="Ole Nieuwenhuizen, Inhaber NIU Media"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
