@@ -1,0 +1,116 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { X, Menu } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const links = [
+  { label: "Leistungen", href: "#leistungen" },
+  { label: "Arbeiten", href: "#arbeiten" },
+  { label: "Über", href: "#ueber" },
+  { label: "Kontakt", href: "#kontakt" },
+];
+
+export default function Nav() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const closeMenu = () => setMenuOpen(false);
+
+  return (
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled
+            ? "backdrop-blur-md bg-black/60 border-b border-white/5"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-6 md:px-8 h-16 flex items-center justify-between">
+          {/* Logo */}
+          <a
+            href="#"
+            className="font-serif text-sm font-semibold tracking-widest uppercase text-foreground hover:text-accent transition-colors duration-300"
+            aria-label="NIU Media – Zurück nach oben"
+          >
+            NIU MEDIA
+          </a>
+
+          {/* Desktop nav */}
+          <nav aria-label="Hauptnavigation" className="hidden md:flex items-center gap-8">
+            {links.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                className="text-sm text-muted hover:text-foreground transition-colors duration-300 tracking-wide"
+              >
+                {link.label}
+              </a>
+            ))}
+          </nav>
+
+          {/* Hamburger */}
+          <button
+            className="md:hidden text-foreground hover:text-accent transition-colors duration-300 p-1"
+            onClick={() => setMenuOpen(true)}
+            aria-label="Menü öffnen"
+          >
+            <Menu size={22} />
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile fullscreen overlay */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-50 bg-background flex flex-col"
+          >
+            <div className="flex items-center justify-between px-6 h-16">
+              <span className="font-serif text-sm font-semibold tracking-widest uppercase text-foreground">
+                NIU MEDIA
+              </span>
+              <button
+                onClick={closeMenu}
+                className="text-foreground hover:text-accent transition-colors p-1"
+                aria-label="Menü schließen"
+              >
+                <X size={22} />
+              </button>
+            </div>
+
+            <nav
+              aria-label="Mobile Navigation"
+              className="flex flex-col items-center justify-center flex-1 gap-10"
+            >
+              {links.map((link, i) => (
+                <motion.a
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1 + i * 0.07 }}
+                  className="font-serif text-3xl font-semibold text-foreground hover:text-accent transition-colors duration-300"
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
