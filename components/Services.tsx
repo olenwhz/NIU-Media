@@ -67,7 +67,7 @@ export default function Services() {
           <motion.p
             variants={fadeUp}
             transition={{ duration: 0.6 }}
-            className="text-accent text-xs font-medium tracking-widest uppercase mb-4"
+            className="text-accent text-xs font-semibold tracking-widest uppercase mb-4"
           >
             Leistungen
           </motion.p>
@@ -82,39 +82,39 @@ export default function Services() {
           <motion.p
             variants={fadeUp}
             transition={{ duration: 0.6 }}
-            className="text-muted leading-relaxed"
+            className="text-foreground/70 leading-relaxed font-medium"
           >
             Foto, Video und Drohne – alles aus einer Hand, damit dein Objekt online und offline überzeugt.
           </motion.p>
         </motion.div>
 
-        {/* Main services – Immobilien */}
+        {/* Main services – separated cards */}
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-60px" }}
-          variants={{ visible: { transition: { staggerChildren: 0.12 } } }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border mb-16"
+          variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16"
         >
           {mainServices.map((service) => (
             <motion.div
               key={service.title}
               variants={fadeUp}
               transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="group bg-background p-8 md:p-10 border border-border hover:border-accent/30 transition-colors duration-300"
+              className="group bg-background border border-border p-8 md:p-10 hover:border-accent/40 transition-colors duration-300"
             >
               <service.icon
-                size={24}
-                className="text-accent mb-6"
+                size={26}
+                className="text-accent mb-7"
                 aria-hidden="true"
               />
-              <h3 className="font-serif font-semibold text-foreground text-xl mb-4 leading-snug">
+              <h3 className="font-serif font-semibold text-foreground text-xl md:text-2xl mb-4 leading-snug">
                 {service.title}
               </h3>
-              <p className="text-muted text-sm leading-relaxed mb-5">
+              <p className="text-foreground/65 text-sm leading-relaxed mb-6 font-medium">
                 {service.description}
               </p>
-              <p className="text-accent/70 text-xs tracking-wider uppercase">
+              <p className="text-accent/80 text-xs font-semibold tracking-wider uppercase">
                 {service.detail}
               </p>
             </motion.div>
@@ -131,7 +131,7 @@ export default function Services() {
           <motion.p
             variants={fadeUp}
             transition={{ duration: 0.5 }}
-            className="text-muted text-xs tracking-widest uppercase mb-6"
+            className="text-foreground/40 text-xs font-semibold tracking-widest uppercase mb-5"
           >
             Weitere Leistungen auf Anfrage
           </motion.p>
@@ -141,7 +141,7 @@ export default function Services() {
                 key={s.title}
                 variants={fadeUp}
                 transition={{ duration: 0.5 }}
-                className="flex items-center gap-2.5 px-5 py-3 border border-border text-muted text-sm hover:border-accent/30 hover:text-foreground transition-colors duration-300"
+                className="flex items-center gap-2.5 px-5 py-3 border border-border text-foreground/60 text-sm font-medium hover:border-accent/30 hover:text-foreground transition-colors duration-300"
               >
                 <s.icon size={15} className="text-accent/60" aria-hidden="true" />
                 {s.title}

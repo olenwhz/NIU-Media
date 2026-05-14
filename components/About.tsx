@@ -13,7 +13,7 @@ export default function About() {
     <section
       id="ueber"
       aria-labelledby="ueber-heading"
-      className="py-24 md:py-32 bg-background-alt"
+      className="py-24 md:py-32 bg-background"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
@@ -58,13 +58,13 @@ export default function About() {
               Eine Person. Ein Auge für Atmosphäre.
             </motion.h2>
 
-            <motion.p variants={fadeUp} className="text-muted leading-relaxed mb-5">
+            <motion.p variants={fadeUp} className="text-foreground/65 leading-relaxed mb-5 font-medium">
               Hinter NIU Media steht Ole Nieuwenhuizen. Ich helfe Unternehmen, Immobilien und
               Marken in Norddeutschland dabei, hochwertig wahrgenommen zu werden — durch Foto,
               Video und Drohnenaufnahmen, die mehr zeigen als nur Produkte.
             </motion.p>
 
-            <motion.p variants={fadeUp} className="text-muted leading-relaxed">
+            <motion.p variants={fadeUp} className="text-foreground/65 leading-relaxed font-medium">
               Persönlich, regional, ohne Agentur-Apparat. Direkt aus Flensburg an die Ostsee,
               ins Binnenland und überall dahin, wo gute Bilder gebraucht werden.
             </motion.p>

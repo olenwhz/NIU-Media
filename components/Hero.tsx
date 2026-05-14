@@ -58,7 +58,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-white/60 text-xs font-medium tracking-[0.2em] uppercase mb-6"
+            className="text-white/85 text-xs font-semibold tracking-[0.2em] uppercase mb-6"
           >
             Foto · Video · Drohne · Flensburg
           </motion.p>
