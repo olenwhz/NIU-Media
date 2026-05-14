@@ -14,7 +14,7 @@ const links = [
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  const [theme, setTheme] = useState<"dark" | "light">("light");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -26,6 +26,7 @@ export default function Nav() {
     try {
       const saved = localStorage.getItem("theme") as "dark" | "light" | null;
       if (saved) setTheme(saved);
+      else setTheme("light");
     } catch {}
   }, []);
 
@@ -35,15 +36,15 @@ export default function Nav() {
     try {
       localStorage.setItem("theme", next);
     } catch {}
-    document.documentElement.classList.toggle("light", next === "light");
+    document.documentElement.classList.toggle("dark", next === "dark");
   };
 
   const closeMenu = () => setMenuOpen(false);
 
   const scrolledClass =
-    theme === "light"
-      ? "backdrop-blur-md bg-white/90 border-b border-border shadow-sm"
-      : "backdrop-blur-md bg-black/60 border-b border-white/5";
+    theme === "dark"
+      ? "backdrop-blur-md bg-black/60 border-b border-white/5"
+      : "backdrop-blur-md bg-white/90 border-b border-border shadow-sm";
 
   return (
     <>

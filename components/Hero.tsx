@@ -73,7 +73,7 @@ export default function Hero() {
           <p className="text-white/65 text-lg md:text-xl mb-3 max-w-md leading-relaxed">
             Hochwertige Immobilienfotografie, -video und Drohnenaufnahmen aus Norddeutschland.
           </p>
-          <p className="text-white/40 text-sm mb-10 max-w-md">
+          <p className="text-white/65 text-sm font-medium mb-10 max-w-md">
             Auf Wunsch auch für Fahrzeuge, Unternehmen und Events.
           </p>
 
