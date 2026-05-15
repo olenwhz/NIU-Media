@@ -63,7 +63,7 @@ export default function Work() {
     <section
       id="projekte"
       aria-labelledby="projekte-heading"
-      className="py-24 md:py-32 bg-background-alt"
+      className="py-16 md:py-24 bg-background-alt"
     >
       <div className="max-w-7xl mx-auto px-6 md:px-8">
         {/* Header */}
